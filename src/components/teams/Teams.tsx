@@ -1,24 +1,32 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Team } from '../../App'
+import classes from './Teams.module.scss'
 
-interface TeamsProps {
-	teams: Team[]
-	loading: boolean
-}
+export const Teams = () => {
+	const [players, setPlayers] = useState<any>([])
 
-export const Teams = ({ teams, loading }: TeamsProps) => {
-    
-	if (loading) {
-		return <p>Loading...</p>
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (e.target.value) {
+			fetch(`https://www.balldontlie.io/api/v1/players?search=${e.target.value}`)
+				.then(res => res.json())
+				.then(data => setPlayers(data.data))
+		} else {
+			setPlayers([])
+		}
 	}
 
 	return (
-		<div>
-			{teams.map(team => (
-				<div key={team.id}>
-					<Link to={`/${team.id}`}>{team.full_name}</Link>
-				</div>
-			))}
+		<div className={classes.header}>
+			<input type='text' placeholder='Enter players name...' onChange={handleChange} />
+			{players.map((player: any) => {
+				return (
+					<div key={player.id}>
+						<Link to={`/${player.id}`}>
+							{player.first_name} {player.last_name}
+						</Link>
+					</div>
+				)
+			})}
 		</div>
 	)
 }

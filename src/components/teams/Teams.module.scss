@@ -1,0 +1,10 @@
+.header {
+	margin-top: var(--spacer-7);
+	width: fit-content;
+	margin-inline: auto;
+
+	input {
+		padding: var(--spacer-3) var(--spacer-5);
+		border-radius: var(--br);
+	}
+}
