@@ -1,0 +1,22 @@
+.header {
+	text-align: center;
+	margin: var(--spacer-2) 0;
+}
+
+.tracker {
+	margin: 0 auto var(--spacer-7);
+	width: fit-content;
+
+	input {
+		padding: var(--spacer-3) var(--spacer-5);
+		border-radius: var(--br);
+		margin-bottom: var(--spacer-3);
+	}
+
+	.players {
+		display: flex;
+		flex-direction: column;
+		margin: 0.25em 0;
+		align-items: center;
+	}
+}

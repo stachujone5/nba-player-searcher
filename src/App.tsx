@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router-dom'
-import { Player } from './components/single_team/Player'
-import { Teams } from './components/teams/Teams'
+import { Player } from './pages/Player/Player'
+import { Home } from './pages/Home/Home'
 
 export const App = () => {
 	return (
 		<Routes>
-			<Route path='/' element={<Teams />}></Route>
+			<Route path='/' element={<Home />}></Route>
 			<Route path=':playerId' element={<Player />}></Route>
 		</Routes>
 	)
