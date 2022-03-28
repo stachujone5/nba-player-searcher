@@ -18,5 +18,12 @@
 		flex-direction: column;
 		margin: 0.25em 0;
 		align-items: center;
+
+		a {
+			transition: color 0.3s;
+			&:hover {
+				color: var(--clr-accent);
+			}
+		}
 	}
 }
