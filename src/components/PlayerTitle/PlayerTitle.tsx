@@ -13,7 +13,7 @@ export const PlayerTitle = ({ playerStats, specificPlayer }: PlayerTitleProps) =
 				<h1 className={classes.title}>
 					{specificPlayer?.first_name} {specificPlayer?.last_name}
 				</h1>
-				{!specificPlayer?.position && <h2 className={`${classes.title} ${classes.err}`}>Retired</h2>}
+				{!specificPlayer?.position && <h2 className={classes.err}>Retired</h2>}
 			</>
 		)
 	}
@@ -22,7 +22,7 @@ export const PlayerTitle = ({ playerStats, specificPlayer }: PlayerTitleProps) =
 			<h1 className={classes.title}>
 				{specificPlayer?.first_name} {specificPlayer?.last_name}
 			</h1>
-			{!playerStats && <h2 className={`${classes.title} ${classes.err}`}>Not in NBA anymore</h2>}
+			{!playerStats && <h2 className={classes.err}>Not in NBA anymore</h2>}
 		</>
 	)
 }

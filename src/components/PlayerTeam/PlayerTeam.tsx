@@ -13,7 +13,7 @@ export const PlayerTeam = ({ playerStats, specificPlayer }: PlayerTeamProps) => 
 	return (
 		<div className={classes.container}>
 			<h3 className='stats'>{!playerStats ? 'Last Team:' : 'Current Team:'}</h3>
-			<p className='singlestat'>{team?.full_name}</p>
+			<p className={classes.team}>{team?.full_name}</p>
 			<img src={team?.img} alt='' />
 		</div>
 	)

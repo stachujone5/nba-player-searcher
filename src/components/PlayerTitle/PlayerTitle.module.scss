@@ -1,9 +1,12 @@
 .title {
 	text-align: center;
 	margin: var(--spacer-1) 0;
-	font-size: var(--fz-6);
+	font-size: var(--fz-8);
 }
 
 .err {
-	color: var(--clr-retired);
+	color: var(--clr-err);
+	text-align: center;
+	margin: var(--spacer-2) 0;
+	font-size: var(--fz-6);
 }

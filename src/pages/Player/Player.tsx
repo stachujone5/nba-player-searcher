@@ -83,7 +83,7 @@ export const Player = () => {
 	}, [playerId])
 
 	if (isError) {
-		return <h2 className={classes.title}>Something went wrong...</h2>
+		return <h2 className={classes.loading}>Something went wrong...</h2>
 	}
 
 	if (loading) {

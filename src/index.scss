@@ -7,10 +7,9 @@
 }
 
 :root {
-	--clr-background: #272635;
-	--clr-secondary: #a6a6a8;
-	--clr-accent: #b1e5f2;
-	--clr-retired: rgb(168, 47, 47);
+	--clr-background: #212121;
+	--clr-accent: #6930c3;
+	--clr-err: rgb(168, 47, 47);
 
 	--max-width: 30rem;
 
@@ -61,6 +60,12 @@ input {
 	font-size: inherit;
 	font-family: inherit;
 	border: none;
+	outline: none;
+	border: 2px solid transparent;
+	&:hover,
+	&:focus-visible {
+		border: 2px solid var(--clr-accent);
+	}
 }
 
 body {
