@@ -11,6 +11,7 @@ export const Home = () => {
 			fetch(`https://www.balldontlie.io/api/v1/players?search=${e.target.value}`)
 				.then(res => res.json())
 				.then(data => setPlayers(data.data))
+				.catch(err => console.log(err))
 		} else {
 			setPlayers([])
 		}
@@ -21,7 +22,7 @@ export const Home = () => {
 			<h1 className={classes.header}>NBA PLAYER SEARCHER</h1>
 			<div className={classes.tracker}>
 				<input type='text' placeholder='Enter players name...' onChange={handleChange} />
-				{players?.map((player: any) => {
+				{players?.map((player: specificPlayerInterface) => {
 					return (
 						<div key={player.id} className={classes.players}>
 							<Link to={`/${player.id}`}>
