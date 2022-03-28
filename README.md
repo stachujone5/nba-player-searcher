@@ -5,7 +5,7 @@ App was also build to practice typescript and react router.
 
 Api used in this project: [balldontlie.io](https://www.balldontlie.io/)
 
-## [Live demo](http://stachujone5.github.io/nba-players-searcher)
+## [Live demo](http://stachujone5.github.io/nba-player-searcher)
 
 ### `npm install`
 
