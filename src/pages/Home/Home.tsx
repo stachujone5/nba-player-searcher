@@ -5,16 +5,23 @@ import classes from './Home.module.scss'
 
 export const Home = () => {
 	const [players, setPlayers] = useState<specificPlayerInterface[]>()
+	const [error, setError] = useState(false)
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.value) {
 			fetch(`https://www.balldontlie.io/api/v1/players?search=${e.target.value}`)
 				.then(res => res.json())
 				.then(data => setPlayers(data.data))
-				.catch(err => console.log(err))
+				.catch(err => {
+					setError(true)
+					console.log(err)
+				})
 		} else {
 			setPlayers([])
 		}
+	}
+	if (error) {
+		return <h1 className={classes.header}>Failed to fetch player...</h1>
 	}
 
 	return (
