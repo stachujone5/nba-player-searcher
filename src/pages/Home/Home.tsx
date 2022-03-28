@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { specificPlayerInterface } from '../Player/Player'
 import classes from './Home.module.scss'
 
 export const Home = () => {
-	const [players, setPlayers] = useState<any>([])
+	const [players, setPlayers] = useState<specificPlayerInterface[]>()
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.value) {
@@ -20,7 +21,7 @@ export const Home = () => {
 			<h1 className={classes.header}>NBA PLAYER SEARCHER</h1>
 			<div className={classes.tracker}>
 				<input type='text' placeholder='Enter players name...' onChange={handleChange} />
-				{players.map((player: any) => {
+				{players?.map((player: any) => {
 					return (
 						<div key={player.id} className={classes.players}>
 							<Link to={`/${player.id}`}>
