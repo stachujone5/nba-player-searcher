@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/nba-players-searcher/static/css/main.beb6947f.css",
-    "main.js": "/nba-players-searcher/static/js/main.13a72fed.js",
-    "index.html": "/nba-players-searcher/index.html",
-    "main.beb6947f.css.map": "/nba-players-searcher/static/css/main.beb6947f.css.map",
-    "main.13a72fed.js.map": "/nba-players-searcher/static/js/main.13a72fed.js.map"
+    "main.css": "/nba-player-searcher/static/css/main.beb6947f.css",
+    "main.js": "/nba-player-searcher/static/js/main.13a72fed.js",
+    "index.html": "/nba-player-searcher/index.html",
+    "main.beb6947f.css.map": "/nba-player-searcher/static/css/main.beb6947f.css.map",
+    "main.13a72fed.js.map": "/nba-player-searcher/static/js/main.13a72fed.js.map"
   },
   "entrypoints": [
     "static/css/main.beb6947f.css",
