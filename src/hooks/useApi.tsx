@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 type useApiResponse<ResponseData> =
   // Initial
@@ -23,13 +23,7 @@ type useApiResponse<ResponseData> =
 export const useApi = <ResponseData,>(path: string) => {
   const [response, setResponse] = useState<useApiResponse<ResponseData>>({ data: null, isLoading: true, error: false })
 
-  useEffect(() => {
-    f()
-      .then()
-      .catch(err => console.log(err))
-  }, [path])
-
-  const f = async () => {
+  const f = useCallback(async () => {
     try {
       const res = await fetch(path)
       const data: ResponseData = await res.json()
@@ -38,7 +32,13 @@ export const useApi = <ResponseData,>(path: string) => {
     } catch (err) {
       setResponse({ data: null, isLoading: false, error: true })
     }
-  }
+  }, [path])
+
+  useEffect(() => {
+    f()
+      .then()
+      .catch(err => console.log(err))
+  }, [path, f])
 
   return response
 }

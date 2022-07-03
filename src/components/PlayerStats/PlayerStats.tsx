@@ -1,25 +1,25 @@
-import type { playerStatsInterface } from '../../pages/Player/Player'
+import type { Stats } from '../../types/types'
 
-interface PlayerStatsProps {
-  readonly playerStats: playerStatsInterface | undefined
+interface Props {
+  readonly stats?: Stats
 }
 
-export const PlayerStats = ({ playerStats }: PlayerStatsProps) => {
-  if (playerStats) {
+export const PlayerStats = ({ stats }: Props) => {
+  if (stats) {
     return (
       <div>
         <h3 className='stats'>Season's stats:</h3>
         <p className='singlestat'>
-          Games played: <span>{playerStats?.games_played}</span>
+          Games played: <span>{stats.games_played}</span>
         </p>
         <p className='singlestat'>
-          Shots per match: <span>{playerStats?.pts}</span>
+          Shots per match: <span>{stats.pts}</span>
         </p>
         <p className='singlestat'>
-          Rebounds: <span>{playerStats?.reb}</span>
+          Rebounds: <span>{stats.reb}</span>
         </p>
         <p className='singlestat'>
-          Assists: <span>{playerStats?.ast}</span>
+          Assists: <span>{stats.ast}</span>
         </p>
       </div>
     )

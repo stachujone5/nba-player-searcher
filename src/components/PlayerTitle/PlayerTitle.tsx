@@ -1,29 +1,20 @@
 import classes from './PlayerTitle.module.scss'
 
-import type { playerStatsInterface, specificPlayerInterface } from '../../pages/Player/Player'
+import type { Player, Stats } from '../../types/types'
 
-interface PlayerTitleProps {
-  readonly playerStats: playerStatsInterface | undefined
-  readonly specificPlayer: specificPlayerInterface | undefined
+interface Props {
+  readonly stats?: Stats
+  readonly player: Player
 }
 
-export const PlayerTitle = ({ playerStats, specificPlayer }: PlayerTitleProps) => {
-  if (!specificPlayer?.position) {
-    return (
-      <>
-        <h1 className={classes.title}>
-          {specificPlayer?.first_name} {specificPlayer?.last_name}
-        </h1>
-        {!specificPlayer?.position && <h2 className={classes.err}>Retired</h2>}
-      </>
-    )
-  }
+export const PlayerTitle = ({ stats, player: { last_name, first_name, position } }: Props) => {
   return (
     <>
       <h1 className={classes.title}>
-        {specificPlayer?.first_name} {specificPlayer?.last_name}
+        {first_name} {last_name}
       </h1>
-      {!playerStats && <h2 className={classes.err}>Not in NBA anymore</h2>}
+      {!position && <h2 className={classes.err}>Retired</h2>}
+      {!stats && <h2 className={classes.err}>Not in NBA anymore</h2>}
     </>
   )
 }

@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 
 import { Home } from './pages/Home/Home'
-import { PlayerView } from './pages/Player/Player'
+import { PlayerView } from './pages/Player/PlayerView'
 
 export const App = () => {
   return (

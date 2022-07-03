@@ -33,6 +33,7 @@
     "@typeofweb/eslint-plugin": "^0.3.0",
     "eslint": "^8.19.0",
     "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.7.0-next-4cd788aef-20220630",
     "gh-pages": "^3.2.3",
     "prettier": "^2.7.1",
     "typescript": "^4.7.4"
@@ -46,6 +47,7 @@
     "@types/node-sass": "^4.11.3",
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
+    "node-sass": "^7.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",

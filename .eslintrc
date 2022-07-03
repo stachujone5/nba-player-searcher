@@ -4,7 +4,7 @@
     "project": "tsconfig.json"
   },
   "plugins": ["@typeofweb"],
-  "extends": ["plugin:@typeofweb/recommended", "plugin:react/recommended", "plugin:react/jsx-runtime"],
+  "extends": ["react-app", "plugin:@typeofweb/recommended"],
   "rules": {
     "@typeofweb/capitalize-modules": "off",
     "react/self-closing-comp": [

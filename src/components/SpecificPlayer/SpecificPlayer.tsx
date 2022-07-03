@@ -3,25 +3,24 @@ import { feetToMeters, poundToKg } from '../../utils/calculations'
 import type { Player } from '../../types/types'
 
 interface Props {
-  readonly currentPlayer: Player
+  readonly player: Player
 }
 
-export const SpecificPlayer = ({ currentPlayer }: Props) => {
-  if (currentPlayer?.height_feet || currentPlayer?.weight_pounds) {
+export const SpecificPlayer = ({ player: { height_feet, height_inches, weight_pounds } }: Props) => {
+  if (height_feet && weight_pounds && height_inches) {
     return (
       <div>
         <h3 className='stats'>Player info:</h3>
         <p className='singlestat'>
           Height:
           <span>
-            {currentPlayer?.height_feet}' {currentPlayer?.height_inches}" /{' '}
-            {feetToMeters(currentPlayer?.height_feet, currentPlayer?.height_inches)}
+            {height_feet}' {height_inches}" / {feetToMeters(height_feet, height_inches)}
           </span>
         </p>
         <p className='singlestat'>
           Weight:
           <span>
-            {currentPlayer.weight_pounds}lbs / {poundToKg(currentPlayer.weight_pounds)}
+            {weight_pounds}lbs / {poundToKg(weight_pounds)}
           </span>
         </p>
       </div>

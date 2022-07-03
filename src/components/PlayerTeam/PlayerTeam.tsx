@@ -1,23 +1,22 @@
-import { teams } from '../../constants/teams'
+import { TEAMS } from '../../constants/teams'
 
 import classes from './PlayerTeam.module.scss'
 
-import type { playerStatsInterface, specificPlayerInterface } from '../../pages/Player/Player'
-import type { Team } from '../../constants/teams'
+import type { Player, Stats } from '../../types/types'
 
-interface PlayerTeamProps {
-  readonly playerStats: playerStatsInterface | undefined
-  readonly specificPlayer: specificPlayerInterface | undefined
+interface Props {
+  readonly player: Player
+  readonly stats?: Stats
 }
 
-export const PlayerTeam = ({ playerStats, specificPlayer }: PlayerTeamProps) => {
-  const team = teams.find((team: Team) => team.full_name === specificPlayer?.team.full_name)
+export const PlayerTeam = ({ stats, player }: Props) => {
+  const team = TEAMS.find(team => team.full_name === player.team.full_name)
 
   return (
     <div className={classes.container}>
-      <h3 className='stats'>{!playerStats ? 'Last Team:' : 'Current Team:'}</h3>
-      <p className={classes.team}>{team?.full_name}</p>
-      <img src={team?.img} alt='' />
+      <h3 className='stats'>{!stats ? 'Last Team:' : 'Current Team:'}</h3>
+      <p className={classes.team}>{team?.full_name ? team.full_name : 'Team not found'}</p>
+      {team?.img && <img src={team.img} alt={`${team.full_name} logo`} />}
     </div>
   )
 }
