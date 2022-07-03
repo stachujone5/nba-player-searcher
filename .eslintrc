@@ -1,0 +1,18 @@
+{
+  "root": true,
+  "parserOptions": {
+    "project": "tsconfig.json"
+  },
+  "plugins": ["@typeofweb"],
+  "extends": ["plugin:@typeofweb/recommended", "plugin:react/recommended", "plugin:react/jsx-runtime"],
+  "rules": {
+    "@typeofweb/capitalize-modules": "off",
+    "react/self-closing-comp": [
+      "error",
+      {
+        "component": true,
+        "html": true
+      }
+    ]
+  }
+}
