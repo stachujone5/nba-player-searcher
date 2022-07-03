@@ -1,29 +1,27 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
+import { useApi } from '../../hooks/useApi'
+
 import classes from './Home.module.scss'
 
-import type { specificPlayerInterface } from '../Player/Player'
+import type { Player } from '../../types/types'
+import type { ChangeEvent } from 'react'
 
 export const Home = () => {
-  const [players, setPlayers] = useState<readonly specificPlayerInterface[]>()
-  const [error, setError] = useState(false)
+  const [players, setPlayers] = useState<readonly Player[]>([])
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value) {
-      fetch(`https://www.balldontlie.io/api/v1/players?search=${e.target.value}`)
-        .then(res => res.json())
-        .then(data => setPlayers(data.data))
-        .catch(err => {
-          setError(true)
-          console.log(err)
-        })
-    } else {
-      setPlayers([])
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { data, error, isLoading } = useApi<{ readonly data: readonly Player[] }>(
+      `https://www.balldontlie.io/api/v1/players?search=${e.target.value}`
+    )
+    if (!error && !isLoading) {
+      setPlayers(data.data)
     }
   }
-  if (error) {
-    return <h1 className={classes.header}>Failed to fetch player...</h1>
+
+  if (!players.length) {
+    return <h1 className={classes.header}>Couldnt't find any players...</h1>
   }
 
   return (
@@ -31,11 +29,11 @@ export const Home = () => {
       <h1 className={classes.header}>NBA PLAYER SEARCHER</h1>
       <div className={classes.tracker}>
         <input type='text' placeholder='Enter players name...' onChange={handleChange} />
-        {players?.map((player: specificPlayerInterface) => {
+        {players.map(({ id, first_name, last_name }) => {
           return (
-            <div key={player.id} className={classes.players}>
-              <Link to={`/${player.id}`}>
-                {player.first_name} {player.last_name}
+            <div key={id} className={classes.players}>
+              <Link to={`/${id}`}>
+                {first_name} {last_name}
               </Link>
             </div>
           )
