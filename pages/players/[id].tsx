@@ -1,27 +1,26 @@
-import { useParams } from 'react-router-dom'
+import { useRouter } from 'next/router'
+import { useQuery } from 'react-query'
 
 import { PlayerStats } from '../../components/PlayerStats/PlayerStats'
 import { PlayerTeam } from '../../components/PlayerTeam/PlayerTeam'
 import { PlayerTitle } from '../../components/PlayerTitle/PlayerTitle'
 import { SpecificPlayer } from '../../components/SpecificPlayer/SpecificPlayer'
 import { URL_PLAYER, URL_STATS } from '../../constants/urls'
-import { useApi } from '../../hooks/useApi'
+import { f } from '../../helpers/fetch'
 
 import classes from './Player.module.scss'
 
 import type { Player, Stats } from '../../types/types'
 
-export const PlayerView = () => {
-  const { playerId } = useParams()
+const PlayerPage = () => {
+  const r = useRouter()
 
-  const { data: player, error: errPlayer, isLoading: isLoadingPlayer } = useApi<Player>(`${URL_PLAYER}${playerId}`)
-  const {
-    data: stats,
-    error: errStats,
-    isLoading: isLoadingStats
-  } = useApi<Stats | undefined>(`${URL_STATS}${playerId}`)
+  const id = typeof r.query.id !== 'object' && typeof r.query.id !== 'undefined' ? r.query.id : ''
 
-  if (errPlayer || errStats) {
+  const { data: player, isLoading: isLoadingPlayer } = useQuery('player', () => f<Player>(`${URL_PLAYER}${id}`))
+  const { data: stats, isLoading: isLoadingStats } = useQuery('stats', () => f<Stats>(`${URL_STATS}${id}`))
+
+  if (!player) {
     return <h2 className={classes.loading}>Something went wrong...</h2>
   }
 
@@ -40,3 +39,5 @@ export const PlayerView = () => {
     </>
   )
 }
+
+export default PlayerPage

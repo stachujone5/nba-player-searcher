@@ -1,4 +1,4 @@
-import { feetToMeters, poundToKg } from '../../utils/calculations'
+import { feetToMeters, poundToKg } from '../../helpers/calculations'
 
 import type { Player } from '../../types/types'
 

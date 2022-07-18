@@ -1,42 +1,48 @@
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useQuery } from 'react-query'
 
-import { useApi } from '../../hooks/useApi'
+import { URL_ALL_PLAYERS } from '../constants/urls'
+import { f } from '../helpers/fetch'
 
 import classes from './Home.module.scss'
 
-import type { Player } from '../../types/types'
+import type { Player } from '../types/types'
 
-export const Home = () => {
+interface AllPlayers {
+  readonly data: readonly Player[]
+}
+
+const HomePage = () => {
   const [players, setPlayers] = useState<readonly Player[]>([])
   const [value, setValue] = useState('')
 
-  const { data, error, isLoading } = useApi<{ readonly data: readonly Player[] }>(
-    `https://www.balldontlie.io/api/v1/players?search=${value}`
+  const { data, error, isLoading } = useQuery<AllPlayers, string>('players', () =>
+    f<AllPlayers>(`${URL_ALL_PLAYERS}${value}`)
   )
 
   useEffect(() => {
-    if (isLoading || error) return
+    if (!data) return
 
     setPlayers(value ? data.data : [])
   }, [isLoading, data, error, value])
 
   if (error) {
-    return <h1 className={classes.header}>Something went wrong...</h1>
+    return <h1 className={classes.header}>There was an error: ${error}</h1>
   }
 
+  if (isLoading) {
+    return <h1 className={classes.header}>Loading...</h1>
+  }
   return (
     <>
       <h1 className={classes.header}>NBA PLAYER SEARCHER</h1>
       <div className={classes.tracker}>
-        <div />
         <input type='text' placeholder='Enter players name...' onChange={e => setValue(e.target.value)} />
         {players.map(({ id, first_name, last_name }) => {
           return (
             <div key={id} className={classes.players}>
-              <Link to={`/${id}`}>
-                {first_name} {last_name}
-              </Link>
+              <Link href={`players/${id}`}>{`${first_name} ${last_name}`}</Link>
             </div>
           )
         })}
@@ -44,3 +50,5 @@ export const Home = () => {
     </>
   )
 }
+
+export default HomePage

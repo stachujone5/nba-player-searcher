@@ -3,10 +3,13 @@
   "parserOptions": {
     "project": "tsconfig.json"
   },
+  "parser": "@typescript-eslint/parser",
   "plugins": ["@typeofweb"],
-  "extends": ["react-app", "plugin:@typeofweb/recommended"],
+  "extends": ["plugin:@typeofweb/recommended", "next/core-web-vitals"],
   "rules": {
     "@typeofweb/capitalize-modules": "off",
+    "import/no-default-export": 0,
+    "react/no-unescaped-entities": "off",
     "react/self-closing-comp": [
       "error",
       {
@@ -14,5 +17,6 @@
         "html": true
       }
     ]
-  }
+  },
+  "ignorePatterns": ["next.config.js"]
 }
