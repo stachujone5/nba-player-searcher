@@ -7,9 +7,9 @@ interface Props {
 
 export const Stat = ({ title, text }: Props) => {
   return (
-    <p className={classes.stat}>
+    <p>
       {title}
-      <span>{text}</span>
+      <span className={classes.stat}>{text}</span>
     </p>
   )
 }

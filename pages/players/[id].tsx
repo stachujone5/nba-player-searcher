@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router'
 import { useQuery } from 'react-query'
 
-import { PlayerTeam } from '../../components/PlayerTeam/PlayerTeam'
-import { PlayerTitle } from '../../components/PlayerTitle/PlayerTitle'
 import { SpecificPlayer } from '../../components/SpecificPlayer/SpecificPlayer'
 import { URL_PLAYER, URL_STATS } from '../../constants/urls'
 import { f } from '../../helpers/fetch'
@@ -29,8 +27,6 @@ const PlayerPage = () => {
 
   return (
     <main className={classes.main}>
-      <PlayerTitle stats={stats} player={player} />
-      <PlayerTeam player={player} stats={stats} />
       <SpecificPlayer player={player} stats={stats} />
     </main>
   )
