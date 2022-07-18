@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 import { TEAMS } from '../../constants/teams'
 
 import classes from './PlayerTeam.module.scss'
@@ -16,9 +18,9 @@ export const PlayerTeam = ({ stats, player }: Props) => {
 
   return (
     <div className={classes.container}>
-      <h3 className={classes.stats}>{!stats ? 'Last Team:' : 'Current Team:'}</h3>
+      <h3 className={classes.stats}>{stats ? 'Current team:' : 'Last team:'}</h3>
       <p className={classes.team}>{team?.full_name ? team.full_name : 'Team not found'}</p>
-      {team?.img && <img src={team.img} alt={`${team.full_name} logo`} />}
+      {team?.img && <Image src={team.img} alt={`${team.full_name} logo`} />}
     </div>
   )
 }
