@@ -1,6 +1,7 @@
-export interface Team {
-  readonly full_name: string
-  readonly img: string
+import type { ReactNode } from 'react'
+
+export interface Children {
+  readonly children: ReactNode
 }
 
 export interface Player {
@@ -8,9 +9,9 @@ export interface Player {
   readonly first_name: string
   readonly last_name: string
   readonly position: string
-  readonly height_feet?: number
-  readonly height_inches?: number
-  readonly weight_pounds?: number
+  readonly height_feet: number | null
+  readonly height_inches: number | null
+  readonly weight_pounds: number | null
   readonly team: {
     readonly id: number
     readonly abbreviation: string

@@ -1,6 +1,4 @@
-import type { Team } from './../types/types'
-
-export const TEAMS: readonly Team[] = [
+export const TEAMS = [
   {
     full_name: 'Milwaukee Bucks',
     img: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/mil.png'

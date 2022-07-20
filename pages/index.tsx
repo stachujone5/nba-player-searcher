@@ -2,6 +2,8 @@ import { useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
 import { useState } from 'react'
 
+import { Main } from '../components/main/Main'
+import { Message } from '../components/message/Message'
 import { URL_ALL_PLAYERS } from '../constants/urls'
 import { f } from '../helpers/fetch'
 
@@ -21,34 +23,35 @@ const HomePage = () => {
   )
 
   if (isError) {
-    return <h1 className={classes.header}>There was an error!</h1>
+    return <Message>Something went wrong, please try again.</Message>
   }
 
   if (isLoading) {
-    return <h1 className={classes.header}>Loading...</h1>
+    return <Message>Loading...</Message>
   }
 
+  const players = value ? data.data : []
+
   return (
-    <>
+    <Main>
       <h1 className={classes.header}>NBA PLAYER SEARCHER</h1>
-      <div className={classes.tracker}>
-        <input
-          type='text'
-          placeholder='Enter players name...'
-          onChange={e => {
-            setValue(e.target.value)
-            void refetch()
-          }}
-        />
-        {data.data.map(({ id, first_name, last_name }) => {
-          return (
-            <div key={id} className={classes.players}>
-              <Link href={`players/${id}`}>{`${first_name} ${last_name}`}</Link>
-            </div>
-          )
-        })}
-      </div>
-    </>
+      <input
+        className={classes.input}
+        type='text'
+        placeholder='Enter players name...'
+        onChange={e => {
+          setValue(e.target.value)
+          void refetch()
+        }}
+      />
+      {players.map(({ id, first_name, last_name }) => {
+        return (
+          <div key={id} className={classes.players}>
+            <Link href={`players/${id}`}>{`${first_name} ${last_name}`}</Link>
+          </div>
+        )
+      })}
+    </Main>
   )
 }
 
