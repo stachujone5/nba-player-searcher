@@ -24,7 +24,7 @@ export const SpecificPlayer = ({
       <div className={classes.container}>
         <h3 className={classes.stats}>{stats ? 'Current team:' : 'Last team:'}</h3>
         <p className={classes.team}>{t?.full_name ? t.full_name : 'Team not found'}</p>
-        {t?.img && <Image src={t.img} alt={`${t.full_name} logo`} />}
+        {t?.img && <Image src={t.img} alt={`${t.full_name} logo`} layout='fill' />}
       </div>
       <h1 className={classes.title}>
         {first_name} {last_name}

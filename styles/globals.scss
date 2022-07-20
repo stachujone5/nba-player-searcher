@@ -62,7 +62,6 @@ input {
   border: none;
   outline: none;
   border: 2px solid transparent;
-  &:hover,
   &:focus-visible {
     border: 2px solid var(--clr-accent);
   }
@@ -73,4 +72,5 @@ body {
   color: #fff;
   font-size: var(--fz-1);
   font-family: 'Fredoka', sans-serif;
+  min-height: 100vh;
 }

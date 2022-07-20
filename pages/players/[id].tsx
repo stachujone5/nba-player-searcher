@@ -1,5 +1,5 @@
+import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
-import { useQuery } from 'react-query'
 
 import { SpecificPlayer } from '../../components/SpecificPlayer/SpecificPlayer'
 import { URL_PLAYER, URL_STATS } from '../../constants/urls'
@@ -14,8 +14,8 @@ const PlayerPage = () => {
 
   const id = typeof r.query.id !== 'object' && typeof r.query.id !== 'undefined' ? r.query.id : ''
 
-  const { data: player, isLoading: isLoadingPlayer } = useQuery('player', () => f<Player>(`${URL_PLAYER}${id}`))
-  const { data: stats, isLoading: isLoadingStats } = useQuery('stats', () => f<Stats>(`${URL_STATS}${id}`))
+  const { data: player, isLoading: isLoadingPlayer } = useQuery(['player'], () => f<Player>(`${URL_PLAYER}${id}`))
+  const { data: stats, isLoading: isLoadingStats } = useQuery(['stats'], () => f<Stats>(`${URL_STATS}${id}`))
 
   if (!player) {
     return <h2 className={classes.loading}>Something went wrong...</h2>
