@@ -24,7 +24,7 @@ const PlayerPage = () => {
     data: stats,
     isError: isErrorStats,
     isLoading: isLoadingStats
-  } = useQuery(['stats'], () => f<Stats>(`${URL_STATS}${id}`))
+  } = useQuery(['stats'], () => f<readonly [Stats]>(`${URL_STATS}${id}`))
 
   if (isErrorStats || isErrorPlayer) {
     return <h2 className={classes.loading}>Something went wrong...</h2>
@@ -36,7 +36,7 @@ const PlayerPage = () => {
 
   return (
     <main className={classes.main}>
-      <SpecificPlayer player={player} stats={stats} />
+      <SpecificPlayer player={player} stats={stats[0]} />
     </main>
   )
 }
