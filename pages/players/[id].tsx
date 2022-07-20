@@ -14,10 +14,19 @@ const PlayerPage = () => {
 
   const id = typeof r.query.id !== 'object' && typeof r.query.id !== 'undefined' ? r.query.id : ''
 
-  const { data: player, isLoading: isLoadingPlayer } = useQuery(['player'], () => f<Player>(`${URL_PLAYER}${id}`))
-  const { data: stats, isLoading: isLoadingStats } = useQuery(['stats'], () => f<Stats>(`${URL_STATS}${id}`))
+  const {
+    data: player,
+    isError: isErrorPlayer,
+    isLoading: isLoadingPlayer
+  } = useQuery(['player'], () => f<Player>(`${URL_PLAYER}${id}`))
 
-  if (!player) {
+  const {
+    data: stats,
+    isError: isErrorStats,
+    isLoading: isLoadingStats
+  } = useQuery(['stats'], () => f<Stats>(`${URL_STATS}${id}`))
+
+  if (isErrorStats || isErrorPlayer) {
     return <h2 className={classes.loading}>Something went wrong...</h2>
   }
 
