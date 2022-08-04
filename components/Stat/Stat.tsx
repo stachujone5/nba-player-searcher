@@ -1,11 +1,11 @@
 import classes from './Stat.module.scss'
 
 interface Props {
-  readonly title: string
   readonly text?: string
+  readonly title: string
 }
 
-export const Stat = ({ title, text }: Props) => {
+export const Stat = ({ text, title }: Props) => {
   return (
     <p>
       {title}
