@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
@@ -42,12 +43,17 @@ export const PlayerPageComponent = () => {
     return <Message>Loading...</Message>
   }
 
-  const { height_feet, height_inches, weight_pounds, last_name, first_name, position, team } = player
+  const { first_name, height_feet, height_inches, last_name, position, team, weight_pounds } = player
 
   const t = TEAMS.find(t => t.full_name === team.full_name)
 
   return (
     <Main>
+      <Head>
+        <title>
+          {first_name} {last_name}
+        </title>
+      </Head>
       <h1 className={classes.title}>
         {first_name} {last_name}
       </h1>
